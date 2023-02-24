@@ -31,7 +31,7 @@ body {
 
 	.cart {
 		@media (max-width: 570px) {
-			background: url('img/header/shopper-lite.svg') 0 0 no-repeat;
+			background: url('../img/header/shopper-lite.svg') 0 0 no-repeat;
 			background-size: cover;
 		}
 	}
@@ -455,7 +455,7 @@ body {
 	@media (max-width: 570px) {
 		width: 35px;
 		height: 35px;
-		background: url('/img/header/shopper.svg') 0 0 no-repeat;
+		background: url('../img/header/shopper.svg') 0 0 no-repeat;
 		background-size: cover;
 	}
 
