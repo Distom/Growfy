@@ -11,7 +11,7 @@
 </head>
 
 <body class="dark-theme">
-	<div class="wrapper">
+	<div class="wrapper" id="home">
 		<header class="header">
 			<div class="header__container">
 				<div class="header__logo-block">
@@ -42,10 +42,10 @@
 							<span class="header__menu-icon-elem"></span>
 						</button>
 						<ul class="header__menu-list">
-							<li class="header__menu-item"><a href="#" class="header__menu-link">Home</a></li>
-							<li class="header__menu-item"><a href="#" class="header__menu-link">About</a></li>
+							<li class="header__menu-item"><a href="#home" class="header__menu-link">Home</a></li>
+							<li class="header__menu-item"><a href="#about" class="header__menu-link">About</a></li>
 							<li class="header__menu-item"><a href="#" class="header__menu-link">Pages</a></li>
-							<li class="header__menu-item"><a href="#" class="header__menu-link">Services</a></li>
+							<li class="header__menu-item"><a href="#services" class="header__menu-link">Services</a></li>
 						</ul>
 					</nav>
 					<a href="#" class="header__cart cart">
@@ -87,29 +87,29 @@
 					</div>
 				</div>
 			</section>
-			<section class="sponsors">
-				<div class="sponsors__container">
-					<h2 class="sponsors__title">TRUSTED BY startups and large enterprises</h2>
-					<ul class="sponsors__icons">
-						<li class="sponsors__icon">
-							<img src="img/sponsors/luminous.svg" alt="luminous logo">
+			<section class="companies">
+				<div class="companies__container">
+					<h2 class="companies__title">TRUSTED BY startups and large enterprises</h2>
+					<ul class="companies__icons">
+						<li class="companies__icon">
+							<img src="img/companies/luminous.svg" alt="luminous logo">
 						</li>
-						<li class="sponsors__icon">
-							<img src="img/sponsors/sitemark.svg" alt="sitemark logo">
+						<li class="companies__icon">
+							<img src="img/companies/sitemark.svg" alt="sitemark logo">
 						</li>
-						<li class="sponsors__icon">
-							<img src="img/sponsors/proNature.svg" alt="proNature logo">
+						<li class="companies__icon">
+							<img src="img/companies/proNature.svg" alt="proNature logo">
 						</li>
-						<li class="sponsors__icon">
-							<img src="img/sponsors/greenish.svg" alt="greenish logo">
+						<li class="companies__icon">
+							<img src="img/companies/greenish.svg" alt="greenish logo">
 						</li>
-						<li class="sponsors__icon">
-							<img src="img/sponsors/waveless.svg" alt="waveless logo">
+						<li class="companies__icon">
+							<img src="img/companies/waveless.svg" alt="waveless logo">
 						</li>
 					</ul>
 				</div>
 			</section>
-			<section class="services">
+			<section class="services" id="services">
 				<div class="services__container">
 					<div class="services__text-block text-block">
 						<a href="#" class="text-block__block-button">services</a>
@@ -150,7 +150,7 @@
 						</ul>
 						<ul class="services__cards-col">
 							<li class="services__card">
-								<img class="service__icon" src="img/services/advertising.svg" alt="advertising icon">
+								<img class="service__icon" src="img/services/dollar.svg" alt="dollar icon">
 								<h3 class="service__title">
 									Paid Advertising
 								</h3>
@@ -173,7 +173,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="why">
+			<section class="why" id="about">
 				<div class="why__container">
 					<div class="why__decoration-block">
 						<img class="why__image _img" src="img/why/greenGirl.jpg" alt="girl photo">
@@ -477,7 +477,7 @@
 						<h2 class="main-footer__title">Pages</h2>
 						<ul class="main-footer__menu-list">
 							<li class="main-footer__menu-item">
-								<a href="#" class="main-footer__link">Home</a>
+								<a href="#home" class="main-footer__link">Home</a>
 							</li>
 							<li class="main-footer__menu-item">
 								<a href="#" class="main-footer__link">About</a>
@@ -526,7 +526,9 @@
 						</p>
 						<form class="main-footer__form subscribe-form" action="">
 							<label class="subscribe-form__label" for="email">Enter your email</label>
-							<input class="subscribe-form__email" type="email" placeholder="Enter your email" id="email">
+							<input class="subscribe-form__email" type="email" placeholder="Enter your email" id="email"
+								pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+								required>
 							<label class="subscribe-form__label" for="submit-email">Press to subscribe</label>
 							<input class="subscribe-form__subscribe button" type="submit" value="Subscribe" id="submit-email">
 						</form>

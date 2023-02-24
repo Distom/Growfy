@@ -520,6 +520,12 @@ body {
 	transition: 0.3s;
 }
 
+.transition-after-off {
+	&::after {
+		transition: none;
+	}
+}
+
 .header__theme-switcher:checked+.header__theme-label {
 	background: #FFCD1D;
 }
@@ -621,7 +627,7 @@ body {
 
 //---------------------------------
 
-.sponsors {
+.companies {
 	margin-bottom: 160px;
 
 	&__container {}
