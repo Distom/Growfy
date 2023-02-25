@@ -58,15 +58,18 @@ input[type=checkbox]:focus-visible,
 		}
 	}
 
-	.main-footer__social-media-icon {
+	.main-footer__social-media-link {
 
 		&:hover,
 		&:focus-visible {
-			fill: rgba(30, 30, 30, 0.03);
+			.main-footer__social-media-icon {
+				fill: rgba(30, 30, 30, 0.03);
 
-			path {
-				fill: var(--color);
+				path {
+					fill: var(--color);
+				}
 			}
+
 		}
 	}
 

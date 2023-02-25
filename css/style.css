@@ -135,10 +135,10 @@ input[type=checkbox]:focus-visible,
 .lite-theme .text-block__block-button:hover, .lite-theme .text-block__block-button:focus-visible {
   background: rgba(30, 30, 30, 0.03);
 }
-.lite-theme .main-footer__social-media-icon:hover, .lite-theme .main-footer__social-media-icon:focus-visible {
+.lite-theme .main-footer__social-media-link:hover .main-footer__social-media-icon, .lite-theme .main-footer__social-media-link:focus-visible .main-footer__social-media-icon {
   fill: rgba(30, 30, 30, 0.03);
 }
-.lite-theme .main-footer__social-media-icon:hover path, .lite-theme .main-footer__social-media-icon:focus-visible path {
+.lite-theme .main-footer__social-media-link:hover .main-footer__social-media-icon path, .lite-theme .main-footer__social-media-link:focus-visible .main-footer__social-media-icon path {
   fill: var(--color);
 }
 .lite-theme .subscribe-form__email:hover, .lite-theme .subscribe-form__email:focus-visible {
