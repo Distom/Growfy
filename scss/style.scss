@@ -16,8 +16,11 @@ body {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
-	outline: 2px solid rgb(126, 126, 126);
+input[type=button]:focus-visible,
+input[type=submit]:focus-visible,
+input[type=checkbox]:focus-visible,
+[role=button]:focus-visible {
+	outline: 1px solid rgb(126, 126, 126);
 }
 
 .transition-all {
@@ -48,13 +51,17 @@ input:focus-visible {
 	}
 
 	.text-block__block-button {
-		&:hover {
+
+		&:hover,
+		&:focus-visible {
 			background: rgba(30, 30, 30, 0.03);
 		}
 	}
 
 	.main-footer__social-media-icon {
-		&:hover {
+
+		&:hover,
+		&:focus-visible {
 			fill: rgba(30, 30, 30, 0.03);
 
 			path {
@@ -64,7 +71,9 @@ input:focus-visible {
 	}
 
 	.subscribe-form__email {
-		&:hover {
+
+		&:hover,
+		&:focus-visible {
 			background: rgba(30, 30, 30, 0.03);
 		}
 	}
@@ -163,7 +172,8 @@ input:focus-visible {
 		text-transform: uppercase;
 		transition: background 0.3s;
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			background: #1e1e1e;
 		}
 	}
@@ -419,7 +429,8 @@ input:focus-visible {
 			}
 		}
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			&::after {
 				width: 100%;
 				left: 0;
@@ -1322,7 +1333,20 @@ input:focus-visible {
 		flex-wrap: wrap;
 	}
 
-	&__social-media-link {}
+	&__social-media-link {
+
+		&:hover,
+		&:focus-visible {
+			.main-footer__social-media-icon {
+				fill: rgba(255, 255, 255, 0.163);
+
+				path {
+					fill: #fff;
+				}
+			}
+
+		}
+	}
 
 	&__social-media-icon {
 		width: 36px;
@@ -1332,14 +1356,6 @@ input:focus-visible {
 
 		path {
 			transition: fill 0.3s;
-		}
-
-		&:hover {
-			fill: rgba(255, 255, 255, 0.163);
-
-			path {
-				fill: #fff;
-			}
 		}
 	}
 
@@ -1392,7 +1408,8 @@ input:focus-visible {
 		width: fit-content;
 		transition: color 0.3s;
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			color: var(--color);
 		}
 	}
@@ -1452,7 +1469,8 @@ input:focus-visible {
 			color: rgb(153, 153, 153);
 		}
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			background: #1e1e1e;
 		}
 

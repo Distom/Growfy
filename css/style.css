@@ -102,8 +102,11 @@ body {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
-  outline: 2px solid rgb(126, 126, 126);
+input[type=button]:focus-visible,
+input[type=submit]:focus-visible,
+input[type=checkbox]:focus-visible,
+[role=button]:focus-visible {
+  outline: 1px solid rgb(126, 126, 126);
 }
 
 .transition-all {
@@ -129,16 +132,16 @@ input:focus-visible {
     background-size: cover;
   }
 }
-.lite-theme .text-block__block-button:hover {
+.lite-theme .text-block__block-button:hover, .lite-theme .text-block__block-button:focus-visible {
   background: rgba(30, 30, 30, 0.03);
 }
-.lite-theme .main-footer__social-media-icon:hover {
+.lite-theme .main-footer__social-media-icon:hover, .lite-theme .main-footer__social-media-icon:focus-visible {
   fill: rgba(30, 30, 30, 0.03);
 }
-.lite-theme .main-footer__social-media-icon:hover path {
+.lite-theme .main-footer__social-media-icon:hover path, .lite-theme .main-footer__social-media-icon:focus-visible path {
   fill: var(--color);
 }
-.lite-theme .subscribe-form__email:hover {
+.lite-theme .subscribe-form__email:hover, .lite-theme .subscribe-form__email:focus-visible {
   background: rgba(30, 30, 30, 0.03);
 }
 
@@ -228,7 +231,7 @@ input:focus-visible {
   text-transform: uppercase;
   transition: background 0.3s;
 }
-.text-block__block-button:hover {
+.text-block__block-button:hover, .text-block__block-button:focus-visible {
   background: #1e1e1e;
 }
 .text-block__title {
@@ -458,7 +461,7 @@ input:focus-visible {
     bottom: -10px;
   }
 }
-.header__menu-link:hover::after {
+.header__menu-link:hover::after, .header__menu-link:focus-visible::after {
   width: 100%;
   left: 0;
 }
@@ -1281,6 +1284,12 @@ input:focus-visible {
   gap: 16px;
   flex-wrap: wrap;
 }
+.main-footer__social-media-link:hover .main-footer__social-media-icon, .main-footer__social-media-link:focus-visible .main-footer__social-media-icon {
+  fill: rgba(255, 255, 255, 0.163);
+}
+.main-footer__social-media-link:hover .main-footer__social-media-icon path, .main-footer__social-media-link:focus-visible .main-footer__social-media-icon path {
+  fill: #fff;
+}
 .main-footer__social-media-icon {
   width: 36px;
   height: 36px;
@@ -1289,12 +1298,6 @@ input:focus-visible {
 }
 .main-footer__social-media-icon path {
   transition: fill 0.3s;
-}
-.main-footer__social-media-icon:hover {
-  fill: rgba(255, 255, 255, 0.163);
-}
-.main-footer__social-media-icon:hover path {
-  fill: #fff;
 }
 .main-footer__menu-block {
   flex: 0 1 15%;
@@ -1345,7 +1348,7 @@ input:focus-visible {
   width: fit-content;
   transition: color 0.3s;
 }
-.main-footer__link:hover {
+.main-footer__link:hover, .main-footer__link:focus-visible {
   color: var(--color);
 }
 .main-footer__subscribe-block {
@@ -1406,7 +1409,7 @@ input:focus-visible {
   line-height: 1.5;
   color: rgb(153, 153, 153);
 }
-.subscribe-form__email:hover {
+.subscribe-form__email:hover, .subscribe-form__email:focus-visible {
   background: #1e1e1e;
 }
 .subscribe-form__email:focus::-moz-placeholder {

@@ -12,6 +12,7 @@ updateTheme();
 document.addEventListener('click', menuOnClick);
 document.addEventListener('mouseover', changeBtnColor);
 document.addEventListener('click', toggleTheme);
+document.addEventListener('focusin', changeBtnColor);
 
 addScrollInto();
 window.onresize = function () {
@@ -80,8 +81,6 @@ function toggleMenu() {
 	document.body.classList.toggle('body_menu-active');
 }
 
-
-
 function changeBtnColor(e) {
 	let btn = e.target;
 	if (!btn) return;
@@ -89,10 +88,13 @@ function changeBtnColor(e) {
 
 	if (btn.animation) stopAnimation();
 
+	let reverseListenerType = e.type == 'mouseover' ? 'mouseout' : 'focusout';
 	let originalColor;
 	let oldColor = getComputedStyle(btn).background;
+	let maxIterationCount = 20;
 
 	while (true) {
+		if (maxIterationCount-- == 0) return; //sometimes the loop freezes
 		btn.style.background = btnCollors[randInt(0, btnCollors.length - 1)];
 		let newColor = getComputedStyle(btn).background;
 
@@ -108,12 +110,11 @@ function changeBtnColor(e) {
 					duration: btnAnimationDuration,
 					fill: 'forwards'
 				});
-
 			break;
 		}
 	}
 
-	btn.addEventListener('mouseout', reverseAnimation);
+	btn.addEventListener(reverseListenerType, reverseAnimation);
 
 	function reverseAnimation(e) {
 		if (!e.target.closest('.button')) return;
@@ -133,21 +134,21 @@ function changeBtnColor(e) {
 			fill: 'forwards'
 		});
 
-		btn.animation.addEventListener('finish', finishAnimation);
-		btn.animation.addEventListener('cancel', removeListeners);
-		btn.removeEventListener('mouseout', reverseAnimation);
+		btn.animation?.addEventListener('finish', finishAnimation);
+		btn.animation?.addEventListener('cancel', removeListeners);
+		btn.removeEventListener(reverseListenerType, reverseAnimation);
 	}
 
-	function finishAnimation() {
-		btn.style.background = '';
-		btn.animation.cancel();
+	function finishAnimation() { // ?. becouse sometimes !btn.animation
+		btn.style.background = ''; // focus and mouse event conflicts
+		btn.animation?.cancel();
 		removeListeners();
 		btn.animation = null;
 	}
 
 	function removeListeners() {
-		btn.animation.removeEventListener('finish', finishAnimation);
-		btn.animation.removeEventListener('cancel', removeListeners);
+		btn.animation?.removeEventListener('finish', finishAnimation);
+		btn.animation?.removeEventListener('cancel', removeListeners);
 	}
 
 	function stopAnimation() {
@@ -172,31 +173,3 @@ function addStars() {
 		}
 	});
 }
-
-/* function changeBtnColorTransition(e) {
-	let btn = e.target;
-	if (!btn) return;
-	if (!btn.classList.contains('button')) return;
-	let newColor;
-	while (true) {
-		let oldColor = getComputedStyle(btn).background;
-		newColor = btnCollors[randInt(0, btnCollors.length - 1)];
-		btn.style.transition = 'none'; // !!!!!
-		btn.style.background = newColor;
-		let cache = getComputedStyle(btn).background;
-		btn.style.background = '';
-		if (oldColor !== cache) {
-			setTimeout(() => {
-				btn.style.transition = 'background 0.3s';
-				btn.style.background = newColor;
-			}, 0);
-			break;
-		}
-	}
-	
-	btn.addEventListener('mouseout', function mouseOut(e) {
-		if (!e.target.closest('.button')) return;
-		btn.style.background = '';
-		btn.removeEventListener('mouseout', mouseOut);
-	});
-} */
