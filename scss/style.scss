@@ -1482,5 +1482,9 @@ input:focus-visible {
 		text-align: center;
 		font-size: 0.875rem;
 		line-height: 1.6;
+
+		@media (max-width: 800px) {
+			padding: 20px 0;
+		}
 	}
 }

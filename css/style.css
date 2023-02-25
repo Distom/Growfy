@@ -1428,3 +1428,8 @@ input:focus-visible {
   font-size: 0.875rem;
   line-height: 1.6;
 }
+@media (max-width: 800px) {
+  .footer-footer__date {
+    padding: 20px 0;
+  }
+}

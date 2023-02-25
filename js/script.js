@@ -80,31 +80,29 @@ function toggleMenu() {
 	document.body.classList.toggle('body_menu-active');
 }
 
+
+
 function changeBtnColor(e) {
 	let btn = e.target;
 	if (!btn) return;
 	if (!btn.classList.contains('button')) return;
 
-	if (btn.animation) {
-		btn.animation.commitStyles();
-		btn.animation.cancel();
-	}
+	if (btn.animation) stopAnimation();
 
-	let newColor;
 	let originalColor;
 	let oldColor = getComputedStyle(btn).background;
 
 	while (true) {
-		newColor = btnCollors[randInt(0, btnCollors.length - 1)];
-		btn.style.background = newColor;
-		let newColorFormated = getComputedStyle(btn).background;
+		btn.style.background = btnCollors[randInt(0, btnCollors.length - 1)];
+		let newColor = getComputedStyle(btn).background;
+
 		btn.style.background = '';
 		originalColor = getComputedStyle(btn).background;
 
-		if (oldColor !== newColorFormated && newColorFormated != originalColor) {
+		if (oldColor !== newColor && newColor != originalColor) {
 			btn.animation = btn.animate([
 				{ background: oldColor },
-				{ background: newColorFormated }
+				{ background: newColor }
 			],
 				{
 					duration: btnAnimationDuration,
@@ -115,45 +113,47 @@ function changeBtnColor(e) {
 		}
 	}
 
-	btn.addEventListener('mouseout', function mouseOut(e) {
+	btn.addEventListener('mouseout', reverseAnimation);
+
+	function reverseAnimation(e) {
 		if (!e.target.closest('.button')) return;
 		if (!btn.animation) return;
 
-		let runTime = btn.animation.currentTime;
-		btn.animation.commitStyles();
-		btn.animation.cancel();
+		let animationDuration = btn.animation.currentTime;
+		stopAnimation();
 
 		let pausedColor = getComputedStyle(btn).background;
 		btn.style.cssText = `background: ${pausedColor}`;
-
 
 		btn.animation = btn.animate([
 			{ background: pausedColor },
 			{ background: originalColor }
 		], {
-			duration: runTime,
+			duration: animationDuration,
 			fill: 'forwards'
 		});
 
-		btn.animation.addEventListener('finish', onFinish);
+		btn.animation.addEventListener('finish', finishAnimation);
+		btn.animation.addEventListener('cancel', removeListeners);
+		btn.removeEventListener('mouseout', reverseAnimation);
+	}
 
-		function onFinish() {
-			btn.style.background = '';
-			btn.animation.removeEventListener('cancel', onCancel);
-			btn.animation.cancel();
-			btn.animation.removeEventListener('finish', onFinish);
-			btn.animation = null;
-		}
+	function finishAnimation() {
+		btn.style.background = '';
+		btn.animation.cancel();
+		removeListeners();
+		btn.animation = null;
+	}
 
-		btn.animation.addEventListener('cancel', onCancel);
+	function removeListeners() {
+		btn.animation.removeEventListener('finish', finishAnimation);
+		btn.animation.removeEventListener('cancel', removeListeners);
+	}
 
-		function onCancel() {
-			btn.animation.removeEventListener('finish', onFinish);
-			btn.animation.removeEventListener('cancel', onCancel);
-		}
-
-		btn.removeEventListener('mouseout', mouseOut);
-	});
+	function stopAnimation() {
+		btn.animation.commitStyles();
+		btn.animation.cancel();
+	}
 }
 
 function randInt(min, max) {
