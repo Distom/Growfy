@@ -9,6 +9,17 @@ body {
 	color: #9C9C9C;
 }
 
+.body_menu-active {
+	height: 100vh;
+	overflow: hidden;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+	outline: 2px solid rgb(126, 126, 126);
+}
+
 .transition-all {
 	transition: all 0.3s;
 }
@@ -30,7 +41,7 @@ body {
 	}
 
 	.cart {
-		@media (max-width: 570px) {
+		@media (max-width: 600px) {
 			background: url('../img/header/shopper-lite.svg') 0 0 no-repeat;
 			background-size: cover;
 		}
@@ -65,11 +76,6 @@ body {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
-
-	&_menu-active {
-		height: 100vh;
-		overflow: hidden;
-	}
 }
 
 [class*='__container'] {
@@ -215,7 +221,7 @@ body {
 	color: var(--color);
 	margin-bottom: 64px;
 
-	@media (max-width: 850px) {
+	@media (max-width: 870px) {
 		margin-bottom: 32px;
 	}
 
@@ -238,7 +244,7 @@ body {
 			gap: 20px;
 		}
 
-		@media (max-width: 430px) {
+		@media (max-width: 460px) {
 			width: 100%;
 			justify-content: space-between;
 			flex-wrap: wrap;
@@ -259,7 +265,7 @@ body {
 			gap: 20px;
 		}
 
-		@media (max-width: 430px) {
+		@media (max-width: 460px) {
 			width: 100%;
 			justify-content: space-evenly;
 		}
@@ -274,12 +280,12 @@ body {
 	&__theme-switcher {}
 
 	&__logo {
-		@media (max-width: 570px) {
+		@media (max-width: 600px) {
 			overflow: hidden;
 			width: 37px;
 		}
 
-		@media (max-width: 430px) {
+		@media (max-width: 460px) {
 			width: auto;
 		}
 	}
@@ -288,7 +294,7 @@ body {
 		display: flex;
 		align-items: center;
 
-		@media (max-width: 850px) {
+		@media (max-width: 870px) {
 			order: 6;
 		}
 	}
@@ -300,7 +306,7 @@ body {
 		width: 100%;
 		height: 2px;
 		background-color: var(--color);
-		transition: all 0.1s;
+		transition: height 0.1s;
 	}
 
 	&__menu-icon {
@@ -310,9 +316,9 @@ body {
 		z-index: 10;
 		display: none;
 		background-color: transparent;
-		transition: 0.4s ease-in;
+		transition: transform 0.4s ease-in;
 
-		@media (max-width: 850px) {
+		@media (max-width: 870px) {
 			display: inline-block;
 		}
 
@@ -324,7 +330,7 @@ body {
 			width: 100%;
 			height: 2px;
 			background-color: var(--color);
-			transition: all 0.2s;
+			transition: transform 0.2s;
 		}
 
 		&::after {
@@ -362,7 +368,7 @@ body {
 			gap: 20px;
 		}
 
-		@media (max-width: 850px) {
+		@media (max-width: 870px) {
 			gap: 32px;
 			flex-wrap: nowrap;
 			padding-top: 130px;
@@ -378,7 +384,7 @@ body {
 			font-size: 1.3rem;
 		}
 
-		@media (max-width: 430px) {
+		@media (max-width: 460px) {
 			padding-top: 180px;
 		}
 
@@ -388,7 +394,7 @@ body {
 	}
 
 	&__menu-item {
-		@media (max-width: 850px) {
+		@media (max-width: 870px) {
 			width: 50%;
 			margin: 0 auto;
 		}
@@ -406,9 +412,9 @@ body {
 			width: 0;
 			height: 1px;
 			background-color: var(--color);
-			transition: all 0.2s;
+			transition: width 0.2s, left 0.2s;
 
-			@media (max-width: 850px) {
+			@media (max-width: 870px) {
 				bottom: -10px;
 			}
 		}
@@ -420,7 +426,7 @@ body {
 			}
 		}
 
-		@media (max-width: 850px) {
+		@media (max-width: 870px) {
 			display: block;
 			width: 100%;
 		}
@@ -447,12 +453,12 @@ body {
 		font-size: 1.1rem;
 
 		/* 17.6/16 */
-		@media (max-width: 570px) {
+		@media (max-width: 600px) {
 			display: none;
 		}
 	}
 
-	@media (max-width: 570px) {
+	@media (max-width: 600px) {
 		width: 35px;
 		height: 35px;
 		background: url('../img/header/shopper.svg') 0 0 no-repeat;
@@ -464,7 +470,7 @@ body {
 		/* 14/16 */
 		position: relative;
 
-		@media (max-width: 570px) {
+		@media (max-width: 600px) {
 			top: 7px;
 			width: 100%;
 			text-align: center;
@@ -481,7 +487,7 @@ body {
 			background: rgba(129, 129, 139, 0.3);
 		}
 
-		@media (max-width: 570px) {
+		@media (max-width: 600px) {
 			&::after {
 				display: none;
 			}
@@ -494,7 +500,12 @@ body {
 .header__theme-switcher {
 	height: 0;
 	width: 0;
-	visibility: hidden;
+	appearance: none;
+	position: absolute;
+	z-index: -100;
+	width: 50px;
+	height: 25px;
+	border-radius: 24px;
 }
 
 .header__theme-label {

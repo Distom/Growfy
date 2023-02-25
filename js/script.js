@@ -3,14 +3,13 @@
 let themeSwitcher = document.querySelector('.header__theme-switcher');
 let menuIcon = document.querySelector('.header__menu-icon');
 let menu = document.querySelector('.header__menu-list');
-let wrapper = document.querySelector('.wrapper');
 let btnCollors = ['#5CC97B', '#FF6D35', '#3D96F4', '#FFCD1D'];
 let btnAnimationDuration = 300;
 
 addStars();
 updateTheme();
 
-document.addEventListener('click', toggleMenu);
+document.addEventListener('click', menuOnClick);
 document.addEventListener('mouseover', changeBtnColor);
 document.addEventListener('click', toggleTheme);
 
@@ -31,6 +30,10 @@ function addScrollInto() {
 
 			let target = document.querySelector(href);
 			if (!target) return;
+
+			if (menu.classList.contains('header__menu-list_active')) {
+				toggleMenu();
+			}
 			target.scrollIntoView({ behavior: 'smooth', block: position });
 			event.preventDefault();
 		}
@@ -66,11 +69,15 @@ function toggleTheme(e) {
 	saveTheme();
 }
 
-function toggleMenu(e) {
+function menuOnClick(e) {
 	if (!e.target.closest('.header__menu-icon')) return;
+	toggleMenu();
+}
+
+function toggleMenu() {
 	menuIcon.classList.toggle('header__menu-icon_active');
 	menu.classList.toggle('header__menu-list_active');
-	wrapper.classList.toggle('wrapper_menu-active');
+	document.body.classList.toggle('body_menu-active');
 }
 
 function changeBtnColor(e) {
