@@ -366,7 +366,7 @@ input[type=checkbox]:focus-visible,
   z-index: 10;
   display: none;
   background-color: transparent;
-  transition: transform 0.4s ease-in;
+  transition: transform 0.25s ease-in;
 }
 @media (max-width: 870px) {
   .header__menu-icon {
