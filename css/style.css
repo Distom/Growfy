@@ -88,6 +88,10 @@ h6 {
 }
 
 /*--------------------*/
+:root {
+  --scrollY: 0px;
+}
+
 body {
   font-weight: 300;
   font-family: Poppins, Helvetica, sans-serif;
@@ -417,7 +421,7 @@ input[type=checkbox]:focus-visible,
     flex-wrap: nowrap;
     padding-top: 130px;
     padding-bottom: 32px;
-    min-height: 100vh;
+    min-height: calc(100vh + var(--scrollY));
     width: 100%;
     text-align: center;
     top: 0;

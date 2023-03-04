@@ -8,15 +8,17 @@ let btnAnimationDuration = 300;
 
 addStars();
 updateTheme();
+addScrollInto();
 
+window.addEventListener('resize', () => addScrollInto());
 document.addEventListener('click', menuOnClick);
 document.addEventListener('mouseover', changeBtnColor);
 document.addEventListener('click', toggleTheme);
 document.addEventListener('focusin', changeBtnColor);
+document.addEventListener('scroll', updateCssScrollY);
 
-addScrollInto();
-window.onresize = function () {
-	addScrollInto();
+function updateCssScrollY() {
+	document.documentElement.style.setProperty('--scrollY', scrollY + 'px');
 }
 
 function addScrollInto() {

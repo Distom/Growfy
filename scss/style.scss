@@ -1,6 +1,10 @@
 @import "_nullstyle";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 
+:root {
+	--scrollY: 0px;
+}
+
 
 body {
 	font-weight: 300;
@@ -386,7 +390,7 @@ input[type=checkbox]:focus-visible,
 			flex-wrap: nowrap;
 			padding-top: 130px;
 			padding-bottom: 32px;
-			min-height: 100vh;
+			min-height: calc(100vh + var(--scrollY));
 			width: 100%;
 			text-align: center;
 			top: 0;
