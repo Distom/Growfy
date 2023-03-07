@@ -421,7 +421,7 @@ input[type=checkbox]:focus-visible,
     flex-wrap: nowrap;
     padding-top: 130px;
     padding-bottom: 32px;
-    min-height: calc(100vh + var(--scrollY));
+    min-height: calc(100vh + var(--scrollY) + 10px);
     width: 100%;
     text-align: center;
     top: 0;
