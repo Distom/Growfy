@@ -15,7 +15,7 @@ body {
 
 .body_menu-active {
 	height: 100vh;
-	overflow: hidden;
+	overflow: hidden !important;
 }
 
 a:focus-visible,
