@@ -5,17 +5,25 @@ let menuIcon = document.querySelector('.header__menu-icon');
 let menu = document.querySelector('.header__menu-list');
 let btnCollors = ['#5CC97B', '#FF6D35', '#3D96F4', '#FFCD1D'];
 let btnAnimationDuration = 300;
+let menuBurgerActive = false;
 
 addStars();
 updateTheme();
 addScrollInto();
 
 window.addEventListener('resize', () => addScrollInto());
+window.addEventListener('resize', closeMenuBurger);
 document.addEventListener('click', menuOnClick);
 document.addEventListener('mouseover', changeBtnColor);
 document.addEventListener('click', toggleTheme);
 document.addEventListener('focusin', changeBtnColor);
 document.addEventListener('scroll', updateCssScrollY);
+
+function closeMenuBurger() {
+	if (window.innerWidth > 870 && menuBurgerActive) {
+		toggleMenu();
+	}
+}
 
 function updateCssScrollY() {
 	document.documentElement.style.setProperty('--scrollY', scrollY + 'px');
@@ -81,6 +89,7 @@ function toggleMenu() {
 	menuIcon.classList.toggle('header__menu-icon_active');
 	menu.classList.toggle('header__menu-list_active');
 	document.body.classList.toggle('body_menu-active');
+	menuBurgerActive = !menuBurgerActive
 }
 
 function changeBtnColor(e) {
