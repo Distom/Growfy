@@ -88,10 +88,6 @@ h6 {
 }
 
 /*--------------------*/
-:root {
-  --scrollY: 0px;
-}
-
 body {
   font-weight: 300;
   font-family: Poppins, Helvetica, sans-serif;
@@ -165,6 +161,19 @@ input[type=checkbox]:focus-visible,
 
 .main {
   flex: 1 1 auto;
+}
+.main > * {
+  padding-top: 10px;
+}
+@media (max-width: 870px) {
+  .main {
+    margin-top: 130px;
+  }
+}
+@media (max-width: 460px) {
+  .main {
+    margin-top: 180px;
+  }
 }
 
 ._img {
@@ -278,11 +287,29 @@ input[type=checkbox]:focus-visible,
 .header {
   padding: 32px 0;
   color: var(--color);
-  margin-bottom: 64px;
+  background: var(--bg);
+  transition: background 0.3s;
 }
 @media (max-width: 870px) {
   .header {
-    margin-bottom: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 0;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+    z-index: 1;
+    background: linear-gradient(rgba(156, 156, 156, 0.1) 0%, var(--bg) 20%, var(--bg) 80%, rgba(156, 156, 156, 0.1) 100%);
+    border-bottom: 1px solid rgba(156, 156, 156, 0.1);
   }
 }
 .header__container {
@@ -291,6 +318,11 @@ input[type=checkbox]:focus-visible,
   justify-content: space-between;
   gap: 32px;
   flex-wrap: wrap;
+}
+@media (max-width: 460px) {
+  .header__container {
+    gap: 16px;
+  }
 }
 .header__logo-block {
   display: flex;
@@ -419,13 +451,13 @@ input[type=checkbox]:focus-visible,
   .header__menu-list {
     gap: 32px;
     flex-wrap: nowrap;
-    padding-top: 130px;
+    padding-top: 150px;
     padding-bottom: 32px;
-    min-height: calc(100vh + var(--scrollY) + 10px);
-    width: 100%;
+    min-height: 100vh;
+    width: 100vw;
     text-align: center;
     top: 0;
-    position: absolute;
+    position: fixed;
     background-color: var(--bg);
     left: -100%;
     flex-direction: column;
@@ -434,7 +466,7 @@ input[type=checkbox]:focus-visible,
 }
 @media (max-width: 460px) {
   .header__menu-list {
-    padding-top: 180px;
+    padding-top: 220px;
   }
 }
 .header__menu-list_active {
