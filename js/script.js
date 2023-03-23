@@ -40,28 +40,37 @@ function addSlideMenu() {
 			window.addEventListener('scroll', slideMenu);
 			slideMenuAdded = true;
 		} else if (window.innerWidth > 870 && slideMenuAdded) {
-			window.removeEventListener('scroll', slideMenu);
-			header.style.top = '';
-			slideMenuAdded = false;
+			removeSlideMenu();
 		}
 	});
 }
 
+function removeSlideMenu() {
+	window.removeEventListener('scroll', slideMenu);
+	header.style.top = '';
+	slideMenuAdded = false;
+	firstScrollRead = true;
+}
+
+function hideHeader() {
+	header.style.top = `-${header.offsetHeight}px`;
+	headerTop = -header.offsetHeight;
+}
+
 function slideMenu() {
 	let diff = scrollY - prevScrollY;
+
 	if (firstScrollRead) {
 		diff = 0;
 		firstScrollRead = false;
 	}
 
 	setHeaderTop(headerTop - diff);
-
-	console.log(headerTop);
 	prevScrollY = scrollY;
 }
 
 function setHeaderTop(value) {
-	headerTop = Math.max(value, 0 - header.offsetHeight);
+	headerTop = Math.max(value, -header.offsetHeight);
 	headerTop = Math.min(headerTop, 0);
 	header.style.top = headerTop + 'px';
 }
@@ -80,11 +89,14 @@ function addScrollInto() {
 				let target = document.querySelector(href);
 				if (!target) return;
 
+				target.scrollIntoView({ behavior: 'smooth', block: position });
+
 				if (width < 870) {
-					position = target.getBoundingClientRect().top + scrollY - header.offsetHeight;
-					scrollTo({ behavior: 'smooth', top: position });
-				} else {
-					target.scrollIntoView({ behavior: 'smooth', block: position });
+					removeSlideMenu();
+					hideHeader();
+					scrollEnd()
+						.then(addSlideMenu)
+						.then(resetHeaderVisible)
 				}
 
 				if (menu.classList.contains('header__menu-list_active')) {
@@ -95,7 +107,26 @@ function addScrollInto() {
 			}
 		});
 	});
+}
 
+function resetHeaderVisible() {
+	if (-scrollY < header.offsetHeight && header.getBoundingClientRect().top < -scrollY) {
+		setHeaderTop(-scrollY);
+	}
+}
+
+function scrollEnd() {
+	return new Promise(resolve => {
+		let prevScrollY = 0;
+		let interval = setInterval(() => {
+			if (scrollY - prevScrollY != 0) {
+				prevScrollY = scrollY;
+				return;
+			}
+			resolve();
+			clearInterval(interval);
+		}, 20)
+	});
 }
 
 function updateTheme() {
