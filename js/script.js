@@ -90,13 +90,14 @@ function addScrollInto() {
 				if (!target) return;
 
 				target.scrollIntoView({ behavior: 'smooth', block: position });
+				let interval = setInterval(resetHeaderVisible, 16);
 
 				if (width < 870) {
 					removeSlideMenu();
 					hideHeader();
 					scrollEnd()
 						.then(addSlideMenu)
-						.then(resetHeaderVisible)
+						.then(() => clearInterval(interval));
 				}
 
 				if (menu.classList.contains('header__menu-list_active')) {
@@ -110,9 +111,11 @@ function addScrollInto() {
 }
 
 function resetHeaderVisible() {
-	if (-scrollY < header.offsetHeight && header.getBoundingClientRect().top < -scrollY) {
-		setHeaderTop(-scrollY);
-	}
+	requestAnimationFrame(() => {
+		if (-scrollY < header.offsetHeight && header.getBoundingClientRect().top < -scrollY) {
+			setHeaderTop(-scrollY);
+		}
+	});
 }
 
 function scrollEnd() {
